@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pet-listingt</title>
+</head>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+       
+    }
+    h2{
+        color: blue;
+        background: dodgerblue;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    header {
+        background-color: orangered;
+        color: black;
+        text-align: center;
+        padding: 20px 0;
+        font-weight: bold;
+    }
+
+    main {
+        max-width: 500px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color:rgb(19, 211, 211);
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+    }
+
+    form {
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    button {
+        background-color: green;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    button:hover {
+        background-color: blueviolet;
+    }
+</style>
+<header>
+    <h1>Pet Adoption Platform</h1>
+    
+</header>
+<body>
+   <main>
+    <form id="pet-listing-form">
+        <h2>List a Pet</h2>
+        <div class="form-group">
+            <label for="pet-name">Name:</label>
+            <input type="text" id="pet-name" name="name" required>
+        </div>
+        <div class="form-group">
+            <label for="pet-type">Type:</label>
+            <select id="pet-type" name="type" required>
+                <option value="Dog">Dog</option>
+                <option value="Cat">Cat</option>
+                <option value="fishes">fishes</option>
+                <option value="Birds">Birds</option>
+                <option value="others">Other</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="pet-age">Age:</label>
+            <input type="number" id="pet-age" name="age" required>
+        </div>
+        <div class="form-group">
+            <label for="pet-breed">Breed:</label>
+            <input type="text" id="pet-breed" name="breed" required>
+        </div>
+        <button type="submit">List Pet</button>
+    </form>
+   
+
+            <!-- List of pets will be dynamically added here -->
+        </ul>
+    </section>
+    
+   </main> 
+
+   <script>
+    document.getElementById('pet-listing-form').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        // Get form data
+        var formData = new FormData(this);
+
+        // Create a new pet object
+        var pet = {};
+        for (var pair of formData.entries()) {
+            pet[pair[0]] = pair[1];
+        }
+
+        // Call a function to add the pet to the list
+        addPetToList(pet);
+    });
+
+    function addPetToList(pet) {
+        // Create list item for the pet
+        var listItem = document.createElement('li');
+        listItem.textContent = `Name: ${pet.name}, Type: ${pet.type}, Age: ${pet.age}, Breed: ${pet.breed}`;
+
+        // Append the list item to the pet list
+        var petList = document.getElementById('pet-list-items');
+        petList.appendChild(listItem);
+    }
+</script>
+</body>
+</html>
